@@ -1,0 +1,27 @@
+{
+   "name": "social-network",
+   "version": "1.0.0",
+   "description": "```\r - AS A social media startup\r - I WANT an API for my social network that uses a NoSQL database\r - SO THAT my website can handle large amounts of unstructured data\r ```",
+   "main": "server.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node server.js"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/JoseEPina/social-network.git"
+   },
+   "keywords": [],
+   "author": "JoseEPina",
+   "license": "ISC",
+   "dependencies": {
+      "dotenv": "^10.0.0",
+      "express": "^4.17.1",
+      "mongoose": "^6.0.13",
+      "nodemon": "^2.0.15"
+   },
+   "bugs": {
+      "url": "https://github.com/JoseEPina/social-network/issues"
+   },
+   "homepage": "https://github.com/JoseEPina/social-network#readme"
+}
