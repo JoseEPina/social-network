@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 
 const UserSchema = new Schema(
    {
@@ -16,15 +17,19 @@ const UserSchema = new Schema(
          match: [/.+@.+\..+/, 'Please enter a valid e-mail address'],
       },
 
-      thoughts: {
-         type: Schema.Types.ObjectId,
-         ref: 'Thought',
-      },
+      thoughts: [
+         {
+            type: Schema.Types.ObjectId,
+            ref: 'Thought',
+         },
+      ],
 
-      friends: {
-         type: Schema.Types.ObjectId,
-         ref: 'User',
-      },
+      friends: [
+         {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+         },
+      ],
 
       userCreated: {
          type: Date,

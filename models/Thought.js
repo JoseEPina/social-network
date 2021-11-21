@@ -1,6 +1,9 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose'); //* import Schema schema and model function
+const dateFormat = require('../utils/dateFormat');
 
-const UserSchema = new Schema(
+
+
+const ThoughtSchema = new Schema(
    {
       thoughtText: {
          type: String,
@@ -33,7 +36,7 @@ const UserSchema = new Schema(
 
 //! Create a virtual called 'reactionCount' that retrieves
 //! the length of the thought's reactions array field on query
-UserSchema.virtual('reactionCount').get(function () {
+ThoughtSchema.virtual('reactionCount').get(function () {
    return this.reactions.length;
 });
 
