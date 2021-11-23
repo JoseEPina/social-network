@@ -1,8 +1,8 @@
-const { User } = require('../models');
+const { User, Thought } = require('../models');
 
 const userController = {
    // GET all users
-   getAllUsers(req, res) {
+   getAllUsers(req, res) {``
       User.find({})
          .populate({
             path: 'thoughts',
@@ -61,14 +61,24 @@ const userController = {
          .catch((err) => res.status(400).json(err));
    },
 
-   // DELETE user from database
+   //! DELETE ONE user by id & its associated thoughts - METHOD
    deleteUser({ params }, res) {
-      User.findOneAndDelete({ _id: params.id })
+      User.findOne({ _id: params.id })
          .then((dbUserData) => {
             if (!dbUserData) {
-               return res.status(404).json({ message: 'User not found.' });
+               res.status(404).json({ message: 'No user found with this id!' });
+               return;
             }
-            res.json(dbUserData);
+            return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
+         })
+         .then((dbUserData) => {
+            User.findOneAndDelete({ _id: params.id })
+               .then((dbUserData) => {
+                  res.json(dbUserData);
+               })
+               .catch((err) => {
+                  res.status(400).json(err);
+               });
          })
          .catch((err) => res.status(400).json(err));
    },
